@@ -1,0 +1,173 @@
+<html>
+<head>
+    <title>Photobooth</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/3004/3004666.png">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url("https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/232942413/original/f0058ce2d2216df282fcc9bb9bfc4c904904a5f7/make-for-you-photoshop-editing.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 20px;
+            color: #f7f2f2;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        #video {
+            border: 2px solid #828b95;
+            width: 400px;
+            height: 300px;
+            background: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        #canvas {
+            border: 2px solid #828b95;
+            display: block;
+            margin-top: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #79838e;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        select {
+            margin-top: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #007BFF;
+            border-radius: 5px;
+            background: #fff;
+            color: #333;
+        }
+
+        img {
+            border: 10px solid transparent;
+            border-image: url('border-image.png') 30 round; 
+            width: 100px; 
+            height: 100px; 
+            border-radius: 10px;
+        }
+
+        @media (max-width: 600px) {
+            #video,
+            #canvas {
+                width: 90%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Real-Time Camera with Collage Creator</h1>
+    <video id="video" autoplay></video>
+    <button id="capture">Capture Photo</button>
+    <select id="layout">
+        <option value="2x2">2x2 Grid</option>
+        <option value="3x3">3x3 Grid</option>
+        <option value="4x4">4x4 Grid</option>
+    </select>
+    <button id="create-collage">Create Collage</button>
+    <canvas id="canvas"></canvas>
+    <button id="retake-btn">Retake</button>
+    <button id="sendButton">Send</button>
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const captureButton = document.getElementById('capture');
+        const createCollageButton = document.getElementById('create-collage');
+        const layoutSelect = document.getElementById('layout');
+        let photos = [];
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            })
+            .catch(err => {
+                console.error("Error accessing camera: ", err);
+            });
+        captureButton.addEventListener('click', () => {
+            const tempCanvas = document.createElement('canvas');
+            const context = tempCanvas.getContext('2d');
+            tempCanvas.width = video.videoWidth;
+            tempCanvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, tempCanvas.width, tempCanvas.height);
+            const imgData = tempCanvas.toDataURL('image/png');
+            photos.push(imgData);
+            alert("Photo captured! Total photos: " + photos.length);
+        });
+        createCollageButton.addEventListener('click', () => {
+            const layout = layoutSelect.value;
+            let rows, cols;
+
+            switch (layout) {
+                case '2x2':
+                    rows = 2; cols = 2;
+                    break;
+                case '3x3':
+                    rows = 3; cols = 3;
+                    break;
+                case '4x4':
+                    rows = 4; cols = 4;
+                    break;
+                default:
+                    rows = 2; cols = 2;
+            }
+
+            
+            const canvasSize = 600; 
+            const photoSize = canvasSize / rows;
+            canvas.width = canvasSize;
+            canvas.height = canvasSize;
+            const context = canvas.getContext('2d');
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            const borderWidth = 5; 
+            const borderColor = '#000';  
+            let index = 0;
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < cols; col++) {
+                    if (index < photos.length) {
+                        const img = new Image();
+                        img.src = photos[index];
+                        img.onload = () => {
+                            context.drawImage(img, col * photoSize, row * photoSize, photoSize, photoSize);
+                            context.strokeStyle = borderColor;
+                            context.lineWidth = borderWidth;
+                            context.strokeRect(col * photoSize, row * photoSize, photoSize, photoSize);
+                        };
+                        index++;
+                    }
+                }
+            }
+        });
+    </script>
+    
+</body>
+
+</html>

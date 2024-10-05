@@ -1,0 +1,85 @@
+<html>
+<head>
+    <title>Photobooth</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/3004/3004666.png">
+</head>
+
+<body>
+    <header class="header">
+        <div class="top-box">
+            <div class="booth-name">
+                <h1>Start Camera Snap</h1>
+            </div>
+            <div class="event-details">
+                <h1 class="event-title">Capture Your Beautiful Day to Be Remembered</h1>
+                <p class="event-date">Say CHEESE !</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="side">
+        <h2>Hello lovely people</h2>
+        <p>Love to see you ... Smile...let's take a cute pic of You</p>
+    </div>
+
+
+
+        <div class="container">
+            <div class="webcam-container">
+                <video id="video" autoplay></video>
+                <button id="capture-btn">Capture Photo</button>
+            </div>
+            <div id="popup" class="popup">
+                <h2>Your Captured Photo</h2>
+                <canvas id="captured-photo"></canvas>
+                <button id="stickers-btn">Add Stickers</button>
+                <button id="borders-btn">Add Borders</button>
+                <button id="remove-btn">Remove Sticker</button>
+                <button id="save-btn">Save Photo</button>
+                <button id="retake-btn">Retake</button>
+                <a href="collage.html" class="button1">Collage</a>
+                <a href="timer.html" class="button1">Timer</a>
+                <button id="sendButton">Send</button>
+            </div>
+            
+            <div id="modal" style="display:none;">
+                <div id="modalContent">
+                    <h2>Send Picture</h2>
+                    <input type="email" id="email" placeholder="Enter your Gmail ID" required />
+                    <input type="text" id="caption" placeholder="Enter your caption" required />
+                    <button id="submitEmail">Submit</button>
+                    <button id="closeModal">Close</button>
+                </div>
+            </div>
+
+            <div class="overlay" id="overlay"></div>
+            <div class="popup" id="sticker-popup">
+                <h2>Select a Sticker</h2>
+                <div class="card">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1785/1785369.png" class="sticker-option" alt="Sticker 1">
+                    <img src="https://cdn-icons-png.flaticon.com/128/20/20576.png" class="sticker-option" alt="Sunglasses Sticker">
+                    <img src="https://cdn-icons-png.flaticon.com/128/4160/4160724.png" class="sticker-option" alt="Sticker 3">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2584/2584606.png" class="sticker-option" alt="Sticker 4">
+                    <img src="https://cdn-icons-png.flaticon.com/128/12121/12121332.png" class="sticker-option" alt="Flower Sticker">
+                    <img src="https://cdn-icons-png.flaticon.com/128/17758/17758119.png" class="sticker-option" alt="Small Flower Sticker">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1405/1405110.png" class="sticker-option" alt="Kiss Emoji Sticker">
+                </div>
+                <button id="close-sticker-popup">Close</button>
+            </div>
+
+            <div class="popup" id="border-popup">
+                <h2>Select a Border</h2>
+                <div class="card">
+                    <button class="border-option" data-border="gold">Gold Border</button>
+                    <button class="border-option" data-border="pink">Pink Border</button>
+                    <button class="border-option" data-border="grey">Grey Border</button>
+                    <button class="border-option" data-border="white">White Border</button>
+                </div>
+                <button id="close-border-popup">Close</button>
+            </div>
+        </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

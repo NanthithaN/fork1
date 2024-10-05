@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photobooth</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/3004/3004666.png">
+    <link rel="stylesheet" href="newnew1.css">
+</head>
+<body>
+    <header class="header">
+        <div class="top-box">
+            <h1>Start Camera Snap</h1>
+            <h2>Capture Your Beautiful Day to Be Remembered</h2>
+            <p>Say CHEESE!</p>
+        </div>
+    </header>
+
+    <div class="side">
+        <h2>Hello lovely people</h2>
+        <p>Love to see you ... Smile...let's take a cute pic of You</p>
+    </div>
+
+    <div class="webcam-container">
+        
+        <div>
+            <label for="timer-select">
+                <img class="timer-icon" src="https://cdn-icons-png.flaticon.com/128/3095/3095041.png" alt="Timer Icon" />
+                Set Timer:
+            </label>
+            <select id="timer-select">
+                <option value="3">3 seconds</option>
+                <option value="5">5 seconds</option>
+                <option value="10">10 seconds</option>
+            </select>
+        </div>
+
+        <video id="webcam-feed" autoplay></video>
+        <button id="capture-btn">Capture Photo</button>
+
+        <div id="popup" class="popup hidden">
+            <div class="popup-content">
+                <h2>Preview Image</h2>
+                <img id="captured-img" alt="Captured Image">
+                <input type="text" placeholder="Enter your custom text" id="custom-text" class="text-input">
+                <input type="email" placeholder="Enter your email" id="email" class="email-input">
+                <button id="send-email-btn">Send to Email</button>
+                <button id="close-btn">Cancel</button>
+            </div>
+        </div>
+        <div id="countdown-display"></div>
+    </div>
+
+    <script>
+        const video = document.getElementById('webcam-feed');
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            })
+            .catch(err => {
+                console.error("Error accessing webcam: ", err);
+            });
+        document.getElementById('capture-btn').addEventListener('click', function() {
+            const timerSelect = document.getElementById('timer-select').value;
+            const countdownDisplay = document.getElementById('countdown-display');
+            let timeLeft = parseInt(timerSelect);
+            const timerInterval = setInterval(() => {
+                countdownDisplay.innerText = `Photo in ${timeLeft} seconds`;
+                timeLeft--;
+
+                if (timeLeft < 0) {
+                    clearInterval(timerInterval);
+                    countdownDisplay.innerText = "Say CHEESE!!!";
+                    setTimeout(() => {
+                        countdownDisplay.innerText = "";
+                        capturePhoto();  
+                        document.getElementById('popup').style.display = 'block'; 
+                    }, 500);
+                }
+            }, 1000);
+        });
+        function capturePhoto() {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const img = document.getElementById('captured-img');
+            img.src = canvas.toDataURL('image/png'); 
+        }
+        document.getElementById('close-btn').addEventListener('click', function() {
+            document.getElementById('popup').style.display = 'none'; 
+        });
+    </script>
+</body>
+</html>

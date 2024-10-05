@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photobooth</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/3004/3004666.png">
+    <style>
+        body {
+            font-size: 18px;
+            font-family: 'Times New Roman', Times, serif;
+            background-image: url("https://png.pngtree.com/background/20230528/original/pngtree-old-camera-hd-wallpapers-picture-image_2778526.jpg"); 
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+        }
+        p {
+            margin-top: 20px;
+            text-align: center;
+            color: aliceblue;
+            font-size: larger;
+        }
+        form {
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 400px;
+            margin-right: 10px;
+            margin-top: 80px;
+            opacity: 0.5;
+            background-color: black;
+            text-align: center;
+            height: 400px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 10px;
+        }
+        th {
+            padding-bottom: 20px;
+            text-align: left;
+            font-size: 24px;
+            color: #333;
+        }
+        input[type="email"],
+        input[type="password"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input[type="submit"],
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        input[type="submit"]:hover,
+        button:hover {
+            background-color: #0056b3;
+        }
+        .register {
+            margin-top: 20px;
+        }
+        .register span {
+            font-size: 14px;
+            color: #666;
+        }
+        .register a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .register a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <p>Ready to shop for your kids? Log In to access exclusive products and deals.</p>
+    <br><br>
+    <form id="loginForm" action="/login" method="POST">
+        <h3>Log In</h3>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Email ID:</td>
+                    <td><input type="email" id="email" name="email" required></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" id="password" name="password" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="LogIn">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="hidden" name="role" id="role">
+        <div class="register">
+            <span><b style="font-size: medium; color: white;">New User?</b></span>
+            <a href="signin.html">SignIn</a>
+        </div>
+    </form>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function (e) {
+            var email = document.getElementById('email').value;
+            if (email === 'jananibalamurugan2123@gmail.com') {
+                document.getElementById('role').value = 'admin';
+            } else {
+                document.getElementById('role').value = 'user';
+            }
+        });
+    </script>
+    
+</body>
+</html>

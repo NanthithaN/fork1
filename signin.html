@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photobooth</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/3004/3004666.png">
+    <style>
+        body {
+            
+            font-size: 18px;
+            font-family: 'Times New Roman', Times, serif;
+            background-image: url("https://png.pngtree.com/background/20230528/original/pngtree-old-camera-hd-wallpapers-picture-image_2778526.jpg"); 
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            
+        }
+
+        p{
+            margin-top: 20px;
+            text-align: center;
+            color: aliceblue;
+            font-size: larger;
+        }
+        form {
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 400px;
+            margin-right: 10px;
+            margin-top: 80px;
+            opacity: 0.5;
+            background-color: black;
+            text-align: center;
+            height: 550px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        th {
+            padding-bottom: 20px;
+            text-align: left;
+            font-size: 24px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="password"],
+        textarea {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+      
+        input[type="submit"],
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover,
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .register {
+            margin-top: 20px;
+        }
+
+        .register span {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .register a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .register a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <p>Ready to shop for your kids? Create an account to access exclusive products and deals.</p>
+    <br>
+    <br>
+    <form action="/signin" method="POST">
+      <h3>Sign Up     </h3>
+        <table>
+            <tbody>
+                <tr>
+                    <td>First Name:</td>
+                    <td><input type="text" id="firstname" name="firstname"></td>
+                </tr>
+                <tr>
+                    <td>Last Name :</td>
+                    <td><input type="text" id="lastname" name="lastname"></td>
+                </tr>
+  
+                <tr>
+                    <td> Email ID  :</td>
+                    <td><input type="email" id="email" name="email"></td>
+                </tr>
+                <tr>
+                    <td> Password :</td>
+                    <td><input type="password" id="password" name="password"></td>
+                </tr>
+                <tr>
+
+                  <tr>
+                    <td>Confirm password:</td>
+                        <td><input type="password" id="confirmPassword" name="confirmPassword"></td>
+                    </tr>
+                    
+                </tr>
+                    <a href="login.html"></a><td colspan="2">
+                        <input type="submit" value="Register">
+                    </td>
+                </tr></a>
+            </tbody>
+        </table>
+        <div class="register">
+            <span>Already have an account?</span>
+            <a href="login.html">Login</a>
+        </div>
+    </form>
+</body>
+</html>

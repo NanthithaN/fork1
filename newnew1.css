@@ -1,0 +1,171 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-image: url('youth-groups-with-pop-inspired-background.jpg'); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; 
+    font-family: Arial, sans-serif;
+    color: white;
+    height: 100%;
+    width: 100%;
+}
+.header {
+    background: rgba(0, 0, 0, 0.6); 
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    color: white;
+}
+
+.top-box h1,
+.event-details h1,
+.event-details p {
+    margin: 10px 0;
+}
+.side {
+    margin-top: 250px;
+    text-align: center;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.1); 
+    z-index: 2;
+}
+.parallax {
+    position: relative;
+    overflow: hidden;
+}
+
+.curtain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; 
+    display: flex;
+    justify-content: space-between;
+    z-index: 4;
+}
+
+.curtain-image {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 2s ease-in-out; 
+}
+
+.curtain.open .left {
+    transform: translateX(-100%);
+}
+
+.curtain.open .right {
+    transform: translateX(100%);
+}
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 200px; 
+    padding: 20px;
+    transition: transform 0.5s ease, font-size 0.5s ease;
+}
+.side-panel {
+    width: 25%;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1); 
+    border-radius: 10px;
+    transition: transform 0.5s ease, font-size 0.5s ease;
+}
+
+.side-panel h2,
+.side-panel p {
+    color: white;
+}
+.webcam-container {
+    width: 50%; 
+    max-width: 600px; 
+    text-align: center;
+    margin: 100px auto 20px auto; 
+    background: rgba(255, 255, 255, 0.8); 
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.5s ease, font-size 0.5s ease;
+    position: relative; 
+}
+
+#webcam-feed {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+.timer-icon {
+    width: 24px; 
+    vertical-align: middle; 
+    margin-right: 5px; 
+}
+#timer-select {
+    padding: 10px;
+    border-radius: 5px; 
+    border: 1px solid #ccc; 
+    background-color: #f0f0f0; 
+    color: #333; 
+    font-size: 1em; 
+    z-index: 100; 
+    position: relative; 
+}
+.popup {
+    display: none; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9); 
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 1000; 
+}
+.hidden {
+    display: none; 
+}
+.text-input,
+.email-input {
+    width: calc(100% - 20px); 
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc; 
+    margin-bottom: 10px; 
+}
+button {
+    background: #007BFF; 
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px; 
+}
+
+button:hover {
+    background: #0056b3; 
+}
+#countdown-display {
+    font-weight: bold;
+    color: #ffcc00; 
+    margin-top: 10px; 
+}
+#captured-image {
+    margin-top: 20px;
+    border: 2px solid #fff;
+    border-radius: 10px;
+}
